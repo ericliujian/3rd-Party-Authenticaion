@@ -1,4 +1,4 @@
-# 3rd Party Authentication
+<h1> 3rd Party Authentication </h1>
 
 ## Introduction
 
