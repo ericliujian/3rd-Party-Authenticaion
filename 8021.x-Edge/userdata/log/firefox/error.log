@@ -1,9 +1,0 @@
-Gdk-Message: 18:32:42.686: firefox: Fatal IO error 11 (Resource temporarily unavailable) on X server :0.
-
-Sandbox: seccomp sandbox violation: pid 1115, tid 1115, syscall 16, args 2 21523 140722412686392 0 1 0.
-Sandbox: seccomp sandbox violation: pid 1134, tid 1134, syscall 16, args 2 21523 140721650456344 0 1 0.
-Sandbox: seccomp sandbox violation: pid 1194, tid 1194, syscall 16, args 2 21523 140726843351480 0 1 0.
-Gdk-Message: 18:32:42.692: /usr/lib/firefox/firefox: Fatal IO error 11 (Resource temporarily unavailable) on X server :0.
-Sandbox: seccomp sandbox violation: pid 1256, tid 1256, syscall 16, args 2 21523 140724995281480 0 1 0.
-Sandbox: seccomp sandbox violation: pid 1331, tid 1331, syscall 16, args 2 21523 140720426573096 0 1 0.
-

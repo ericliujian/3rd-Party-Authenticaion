@@ -1,2 +1,0 @@
-require("./loadUser");
-require("./state");

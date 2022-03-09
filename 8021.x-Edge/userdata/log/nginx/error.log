@@ -1,1 +1,0 @@
-2020/08/13 17:58:40 [error] 1799#1799: *2 connect() failed (111: Connection refused) while connecting to upstream, client: 172.20.0.1, server: , request: "GET /websockify HTTP/1.1", upstream: "http://127.0.0.1:5900/websockify", host: "localhost:5800"
