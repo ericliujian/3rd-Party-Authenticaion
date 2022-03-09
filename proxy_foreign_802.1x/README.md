@@ -1,4 +1,6 @@
-# foreign 802.1x
+# Foreign 802.1x
+
+There are four components in foreign 802.1 sceanrios:
 
 1. User
 2. Switch (I have used a Cisco 2960 switch)
