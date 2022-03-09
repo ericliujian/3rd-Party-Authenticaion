@@ -1,0 +1,145 @@
+version: '3'
+
+services:
+    # Firefox interface
+    user:
+        image: jlesage/firefox
+        ports:
+        - "5800:5800"
+        volumes:
+        - "./userdata:/config:rw"
+        networks:
+            foreign_oidc_net:
+                ipv4_address: 172.20.0.110
+            foreign_cloud_net:
+                ipv4_address: 172.24.0.110
+        security_opt:
+            - seccomp:unconfined
+        shm_size: 2g
+
+    # Proxy
+    proxy:
+        build:
+            context: .
+            dockerfile: Dockerfile.proxy
+        image: 'federation/proxy:latest'
+        command: >
+            sh -c "cd src && flask run --port=5000 --host=0.0.0.0"
+        tty: true
+        networks:
+            foreign_oidc_net:
+                ipv4_address: 172.20.0.111
+            home_oidc_net:
+                ipv4_address: 172.21.0.111
+            home_dotonex_net:
+                ipv4_address: 172.22.0.111
+            00home_dotonex_proxy_net:
+                ipv4_address: 172.23.0.111
+            foreign_cloud_net:
+                ipv4_address: 172.24.0.111
+            
+          
+        cap_add:
+            - ALL
+        volumes:
+            - "./proxy:/src"
+            - ./proxy/wpasupplicant/:/tmp/wpasupplicant/
+            - ./proxy/wpasupplicant/cert/:/tmp/cert/
+
+    # Simple Flask OIDC Client
+    foreign_oidc:
+        build:
+            context: .
+            dockerfile: Dockerfile.foreign_oidc
+        image: 'federation/foreign_oidc:latest'
+        command: >
+            sh -c "cd src && flask run --port=3000 --host=0.0.0.0"
+        tty: true
+        networks:
+            foreign_oidc_net:
+                ipv4_address: 172.20.0.112
+        cap_add:
+            - ALL
+        volumes:
+            - "./foreign_oidc:/src"
+
+    # Simple Flask CLOUD Client
+    foreign_cloud:
+        build:
+            context: .
+            dockerfile: Dockerfile.foreign_cloud
+        image: 'federation/foreign_cloud:latest'
+        command: >
+            sh -c "cd src && flask run --port=3000 --host=0.0.0.0"
+        tty: true
+        networks:
+            foreign_cloud_net:
+                ipv4_address: 172.24.0.112
+        cap_add:
+            - ALL
+        volumes:
+            - "./foreign_cloud:/src"
+            
+    # Django OIDC Server
+    home_oidc:
+        build:
+            context: .
+            dockerfile: Dockerfile.home_oidc
+        image: 'federation/home_oidc:latest'
+        command: >
+            sh -c "cd src && 
+            python manage.py migrate &&
+            python manage.py creatersakey && 
+            python manage.py runsslserver 0.0.0.0:8000"
+        tty: true
+        networks:
+            home_oidc_net:
+                ipv4_address: 172.21.0.112
+        cap_add:
+            - ALL
+        volumes:
+            - "./home_oidc:/src"
+    
+    
+    # RADIUS server
+    home_802.1x:
+        build:
+            context: .
+            dockerfile: Dockerfile.home_802.1x
+        image: 'federation/home_802.1x:latest'
+        networks:
+            home_dotonex_net:
+                ipv4_address: 172.22.0.113
+        volumes:
+            - "./home_802.1x/freeradius/users:/etc/freeradius/3.0/users:ro"
+            - "./home_802.1x/freeradius/certs:/etc/freeradius/3.0/certs"
+            - "./home_802.1x/freeradius/default/eap:/etc/freeradius/3.0/mods-enabled/eap:ro"
+            - "./home_802.1x/freeradius/clients.conf:/etc/freeradius/3.0/clients.conf:ro"
+
+networks:
+    foreign_oidc_net:
+        driver: bridge
+        ipam:
+            config:
+                - subnet: 172.20.0.0/16
+    foreign_cloud_net:
+        driver: bridge
+        ipam:
+            config:
+                - subnet: 172.24.0.0/16
+    home_oidc_net:
+        driver: bridge
+        ipam:
+            config:
+                - subnet: 172.21.0.0/16
+    home_dotonex_net:
+        driver: bridge
+        ipam:
+            config:
+                - subnet: 172.22.0.0/16
+    00home_dotonex_proxy_net:
+        driver: macvlan
+        ipam:
+            config:
+                - subnet: 172.23.0.0/16
+

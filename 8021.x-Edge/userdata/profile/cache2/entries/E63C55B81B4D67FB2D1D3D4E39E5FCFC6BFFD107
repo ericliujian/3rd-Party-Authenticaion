@@ -1,0 +1,490 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>TypeError: Object of type HomeService is not JSON serializable // Werkzeug Debugger</title>
+    <link rel="stylesheet" href="?__debugger__=yes&amp;cmd=resource&amp;f=style.css"
+        type="text/css">
+    <!-- We need to make sure this has a favicon so that the debugger does
+         not by accident trigger a request to /favicon.ico which might
+         change the application state. -->
+    <link rel="shortcut icon"
+        href="?__debugger__=yes&amp;cmd=resource&amp;f=console.png">
+    <script src="?__debugger__=yes&amp;cmd=resource&amp;f=jquery.js"></script>
+    <script src="?__debugger__=yes&amp;cmd=resource&amp;f=debugger.js"></script>
+    <script type="text/javascript">
+      var TRACEBACK = 140486989151968,
+          CONSOLE_MODE = false,
+          EVALEX = true,
+          EVALEX_TRUSTED = false,
+          SECRET = "CC8N6ryDYHBxkhxrmT56";
+    </script>
+  </head>
+  <body style="background-color: #fff">
+    <div class="debugger">
+<h1>TypeError</h1>
+<div class="detail">
+  <p class="errormsg">TypeError: Object of type HomeService is not JSON serializable</p>
+</div>
+<h2 class="traceback">Traceback <em>(most recent call last)</em></h2>
+<div class="traceback">
+  
+  <ul><li><div class="frame" id="frame-140486989151248">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/flask/app.py"</cite>,
+      line <em class="line">2464</em>,
+      in <code class="function">__call__</code></h4>
+  <div class="source "><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def __call__(self, environ, start_response):</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;The WSGI server calls the Flask application object as the</pre>
+<pre class="line before"><span class="ws">        </span>WSGI application. This calls :meth:`wsgi_app` which can be</pre>
+<pre class="line before"><span class="ws">        </span>wrapped to applying middleware.&quot;&quot;&quot;</pre>
+<pre class="line current"><span class="ws">        </span>return self.wsgi_app(environ, start_response)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def __repr__(self):</pre>
+<pre class="line after"><span class="ws">        </span>return &quot;&lt;%s %r&gt;&quot; % (self.__class__.__name__, self.name)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140486989151200">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/flask/app.py"</cite>,
+      line <em class="line">2450</em>,
+      in <code class="function">wsgi_app</code></h4>
+  <div class="source "><pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>ctx.push()</pre>
+<pre class="line before"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
+<pre class="line before"><span class="ws">            </span>except Exception as e:</pre>
+<pre class="line before"><span class="ws">                </span>error = e</pre>
+<pre class="line current"><span class="ws">                </span>response = self.handle_exception(e)</pre>
+<pre class="line after"><span class="ws">            </span>except:  # noqa: B001</pre>
+<pre class="line after"><span class="ws">                </span>error = sys.exc_info()[1]</pre>
+<pre class="line after"><span class="ws">                </span>raise</pre>
+<pre class="line after"><span class="ws">            </span>return response(environ, start_response)</pre>
+<pre class="line after"><span class="ws">        </span>finally:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140486989151872">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/flask/app.py"</cite>,
+      line <em class="line">1867</em>,
+      in <code class="function">handle_exception</code></h4>
+  <div class="source "><pre class="line before"><span class="ws">            </span># if we want to repropagate the exception, we can attempt to</pre>
+<pre class="line before"><span class="ws">            </span># raise it with the whole traceback in case we can do that</pre>
+<pre class="line before"><span class="ws">            </span># (the function was actually called from the except part)</pre>
+<pre class="line before"><span class="ws">            </span># otherwise, we just raise the error again</pre>
+<pre class="line before"><span class="ws">            </span>if exc_value is e:</pre>
+<pre class="line current"><span class="ws">                </span>reraise(exc_type, exc_value, tb)</pre>
+<pre class="line after"><span class="ws">            </span>else:</pre>
+<pre class="line after"><span class="ws">                </span>raise e</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>self.log_exception((exc_type, exc_value, tb))</pre>
+<pre class="line after"><span class="ws">        </span>server_error = InternalServerError()</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140486989150240">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/flask/_compat.py"</cite>,
+      line <em class="line">39</em>,
+      in <code class="function">reraise</code></h4>
+  <div class="source "><pre class="line before"><span class="ws">    </span>import collections.abc as collections_abc</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def reraise(tp, value, tb=None):</pre>
+<pre class="line before"><span class="ws">        </span>if value.__traceback__ is not tb:</pre>
+<pre class="line before"><span class="ws">            </span>raise value.with_traceback(tb)</pre>
+<pre class="line current"><span class="ws">        </span>raise value</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>implements_to_string = _identity</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span>else:</pre>
+<pre class="line after"><span class="ws">    </span>iterkeys = lambda d: d.iterkeys()</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140486989151920">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/flask/app.py"</cite>,
+      line <em class="line">2447</em>,
+      in <code class="function">wsgi_app</code></h4>
+  <div class="source "><pre class="line before"><span class="ws">        </span>ctx = self.request_context(environ)</pre>
+<pre class="line before"><span class="ws">        </span>error = None</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>ctx.push()</pre>
+<pre class="line current"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
+<pre class="line after"><span class="ws">            </span>except Exception as e:</pre>
+<pre class="line after"><span class="ws">                </span>error = e</pre>
+<pre class="line after"><span class="ws">                </span>response = self.handle_exception(e)</pre>
+<pre class="line after"><span class="ws">            </span>except:  # noqa: B001</pre>
+<pre class="line after"><span class="ws">                </span>error = sys.exc_info()[1]</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140486989150576">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/flask/app.py"</cite>,
+      line <em class="line">1953</em>,
+      in <code class="function">full_dispatch_request</code></h4>
+  <div class="source "><pre class="line before"><span class="ws">            </span>rv = self.preprocess_request()</pre>
+<pre class="line before"><span class="ws">            </span>if rv is None:</pre>
+<pre class="line before"><span class="ws">                </span>rv = self.dispatch_request()</pre>
+<pre class="line before"><span class="ws">        </span>except Exception as e:</pre>
+<pre class="line before"><span class="ws">            </span>rv = self.handle_user_exception(e)</pre>
+<pre class="line current"><span class="ws">        </span>return self.finalize_request(rv)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def finalize_request(self, rv, from_error_handler=False):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Given the return value from a view function this finalizes</pre>
+<pre class="line after"><span class="ws">        </span>the request by converting it into a response and invoking the</pre>
+<pre class="line after"><span class="ws">        </span>postprocessing functions.  This is invoked for both normal</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140486989150384">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/flask/app.py"</cite>,
+      line <em class="line">1970</em>,
+      in <code class="function">finalize_request</code></h4>
+  <div class="source "><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>:internal:</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>response = self.make_response(rv)</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line current"><span class="ws">            </span>response = self.process_response(response)</pre>
+<pre class="line after"><span class="ws">            </span>request_finished.send(self, response=response)</pre>
+<pre class="line after"><span class="ws">        </span>except Exception:</pre>
+<pre class="line after"><span class="ws">            </span>if not from_error_handler:</pre>
+<pre class="line after"><span class="ws">                </span>raise</pre>
+<pre class="line after"><span class="ws">            </span>self.logger.exception(</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140486989151728">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/flask/app.py"</cite>,
+      line <em class="line">2269</em>,
+      in <code class="function">process_response</code></h4>
+  <div class="source "><pre class="line before"><span class="ws">        </span>if None in self.after_request_funcs:</pre>
+<pre class="line before"><span class="ws">            </span>funcs = chain(funcs, reversed(self.after_request_funcs[None]))</pre>
+<pre class="line before"><span class="ws">        </span>for handler in funcs:</pre>
+<pre class="line before"><span class="ws">            </span>response = handler(response)</pre>
+<pre class="line before"><span class="ws">        </span>if not self.session_interface.is_null_session(ctx.session):</pre>
+<pre class="line current"><span class="ws">            </span>self.session_interface.save_session(self, ctx.session, response)</pre>
+<pre class="line after"><span class="ws">        </span>return response</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def do_teardown_request(self, exc=_sentinel):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Called after the request is dispatched and the response is</pre>
+<pre class="line after"><span class="ws">        </span>returned, right before the request context is popped.</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140486989149568">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/flask/sessions.py"</cite>,
+      line <em class="line">378</em>,
+      in <code class="function">save_session</code></h4>
+  <div class="source "><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>httponly = self.get_cookie_httponly(app)</pre>
+<pre class="line before"><span class="ws">        </span>secure = self.get_cookie_secure(app)</pre>
+<pre class="line before"><span class="ws">        </span>samesite = self.get_cookie_samesite(app)</pre>
+<pre class="line before"><span class="ws">        </span>expires = self.get_expiration_time(app, session)</pre>
+<pre class="line current"><span class="ws">        </span>val = self.get_signing_serializer(app).dumps(dict(session))</pre>
+<pre class="line after"><span class="ws">        </span>response.set_cookie(</pre>
+<pre class="line after"><span class="ws">            </span>app.session_cookie_name,</pre>
+<pre class="line after"><span class="ws">            </span>val,</pre>
+<pre class="line after"><span class="ws">            </span>expires=expires,</pre>
+<pre class="line after"><span class="ws">            </span>httponly=httponly,</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140486989150480">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/itsdangerous/serializer.py"</cite>,
+      line <em class="line">166</em>,
+      in <code class="function">dumps</code></h4>
+  <div class="source "><pre class="line before"><span class="ws">    </span>def dumps(self, obj, salt=None):</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;Returns a signed string serialized with the internal</pre>
+<pre class="line before"><span class="ws">        </span>serializer. The return value can be either a byte or unicode</pre>
+<pre class="line before"><span class="ws">        </span>string depending on the format of the internal serializer.</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line current"><span class="ws">        </span>payload = want_bytes(self.dump_payload(obj))</pre>
+<pre class="line after"><span class="ws">        </span>rv = self.make_signer(salt).sign(payload)</pre>
+<pre class="line after"><span class="ws">        </span>if self.is_text_serializer:</pre>
+<pre class="line after"><span class="ws">            </span>rv = rv.decode(&quot;utf-8&quot;)</pre>
+<pre class="line after"><span class="ws">        </span>return rv</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-140486989148752">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/itsdangerous/url_safe.py"</cite>,
+      line <em class="line">42</em>,
+      in <code class="function">dump_payload</code></h4>
+  <div class="source "><pre class="line before"><span class="ws">                    </span>original_error=e,</pre>
+<pre class="line before"><span class="ws">                </span>)</pre>
+<pre class="line before"><span class="ws">        </span>return super(URLSafeSerializerMixin, self).load_payload(json, *args, **kwargs)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def dump_payload(self, obj):</pre>
+<pre class="line current"><span class="ws">        </span>json = super(URLSafeSerializerMixin, self).dump_payload(obj)</pre>
+<pre class="line after"><span class="ws">        </span>is_compressed = False</pre>
+<pre class="line after"><span class="ws">        </span>compressed = zlib.compress(json)</pre>
+<pre class="line after"><span class="ws">        </span>if len(compressed) &lt; (len(json) - 1):</pre>
+<pre class="line after"><span class="ws">            </span>json = compressed</pre>
+<pre class="line after"><span class="ws">            </span>is_compressed = True</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140486989151680">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/itsdangerous/serializer.py"</cite>,
+      line <em class="line">133</em>,
+      in <code class="function">dump_payload</code></h4>
+  <div class="source "><pre class="line before"><span class="ws">    </span>def dump_payload(self, obj):</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;Dumps the encoded object. The return value is always bytes.</pre>
+<pre class="line before"><span class="ws">        </span>If the internal serializer returns text, the value will be</pre>
+<pre class="line before"><span class="ws">        </span>encoded as UTF-8.</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line current"><span class="ws">        </span>return want_bytes(self.serializer.dumps(obj, **self.serializer_kwargs))</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def make_signer(self, salt=None):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Creates a new instance of the signer to be used. The default</pre>
+<pre class="line after"><span class="ws">        </span>implementation uses the :class:`.Signer` base class.</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140486987556944">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/flask/json/tag.py"</cite>,
+      line <em class="line">305</em>,
+      in <code class="function">dumps</code></h4>
+  <div class="source "><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>return self.tags[key].to_python(value[key])</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def dumps(self, value):</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;Tag the value and dump it to a compact JSON string.&quot;&quot;&quot;</pre>
+<pre class="line current"><span class="ws">        </span>return dumps(self.tag(value), separators=(&quot;,&quot;, &quot;:&quot;))</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def loads(self, value):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Load data from a JSON string and deserialized any tagged objects.&quot;&quot;&quot;</pre>
+<pre class="line after"><span class="ws">        </span>return loads(value, object_hook=self.untag)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140486987556032">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/flask/json/__init__.py"</cite>,
+      line <em class="line">211</em>,
+      in <code class="function">dumps</code></h4>
+  <div class="source "><pre class="line before"><span class="ws">        </span>``app`` can be passed directly, rather than requiring an app</pre>
+<pre class="line before"><span class="ws">        </span>context for configuration.</pre>
+<pre class="line before"><span class="ws">    </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">    </span>_dump_arg_defaults(kwargs, app=app)</pre>
+<pre class="line before"><span class="ws">    </span>encoding = kwargs.pop(&quot;encoding&quot;, None)</pre>
+<pre class="line current"><span class="ws">    </span>rv = _json.dumps(obj, **kwargs)</pre>
+<pre class="line after"><span class="ws">    </span>if encoding is not None and isinstance(rv, text_type):</pre>
+<pre class="line after"><span class="ws">        </span>rv = rv.encode(encoding)</pre>
+<pre class="line after"><span class="ws">    </span>return rv</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-140486987556080">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.8/json/__init__.py"</cite>,
+      line <em class="line">234</em>,
+      in <code class="function">dumps</code></h4>
+  <div class="source "><pre class="line before"><span class="ws">        </span>cls is None and indent is None and separators is None and</pre>
+<pre class="line before"><span class="ws">        </span>default is None and not sort_keys and not kw):</pre>
+<pre class="line before"><span class="ws">        </span>return _default_encoder.encode(obj)</pre>
+<pre class="line before"><span class="ws">    </span>if cls is None:</pre>
+<pre class="line before"><span class="ws">        </span>cls = JSONEncoder</pre>
+<pre class="line current"><span class="ws">    </span>return cls(</pre>
+<pre class="line after"><span class="ws">        </span>skipkeys=skipkeys, ensure_ascii=ensure_ascii,</pre>
+<pre class="line after"><span class="ws">        </span>check_circular=check_circular, allow_nan=allow_nan, indent=indent,</pre>
+<pre class="line after"><span class="ws">        </span>separators=separators, default=default, sort_keys=sort_keys,</pre>
+<pre class="line after"><span class="ws">        </span>**kw).encode(obj)</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-140486987555888">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.8/json/encoder.py"</cite>,
+      line <em class="line">199</em>,
+      in <code class="function">encode</code></h4>
+  <div class="source "><pre class="line before"><span class="ws">            </span>else:</pre>
+<pre class="line before"><span class="ws">                </span>return encode_basestring(o)</pre>
+<pre class="line before"><span class="ws">        </span># This doesn't pass the iterator directly to ''.join() because the</pre>
+<pre class="line before"><span class="ws">        </span># exceptions aren't as detailed.  The list call should be roughly</pre>
+<pre class="line before"><span class="ws">        </span># equivalent to the PySequence_Fast that ''.join() would do.</pre>
+<pre class="line current"><span class="ws">        </span>chunks = self.iterencode(o, _one_shot=True)</pre>
+<pre class="line after"><span class="ws">        </span>if not isinstance(chunks, (list, tuple)):</pre>
+<pre class="line after"><span class="ws">            </span>chunks = list(chunks)</pre>
+<pre class="line after"><span class="ws">        </span>return ''.join(chunks)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def iterencode(self, o, _one_shot=False):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140486987555984">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.8/json/encoder.py"</cite>,
+      line <em class="line">257</em>,
+      in <code class="function">iterencode</code></h4>
+  <div class="source "><pre class="line before"><span class="ws">        </span>else:</pre>
+<pre class="line before"><span class="ws">            </span>_iterencode = _make_iterencode(</pre>
+<pre class="line before"><span class="ws">                </span>markers, self.default, _encoder, self.indent, floatstr,</pre>
+<pre class="line before"><span class="ws">                </span>self.key_separator, self.item_separator, self.sort_keys,</pre>
+<pre class="line before"><span class="ws">                </span>self.skipkeys, _one_shot)</pre>
+<pre class="line current"><span class="ws">        </span>return _iterencode(o, 0)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span>def _make_iterencode(markers, _default, _encoder, _indent, _floatstr,</pre>
+<pre class="line after"><span class="ws">        </span>_key_separator, _item_separator, _sort_keys, _skipkeys, _one_shot,</pre>
+<pre class="line after"><span class="ws">        </span>## HACK: hand-optimized bytecode; turn globals into locals</pre>
+<pre class="line after"><span class="ws">        </span>ValueError=ValueError,</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140486987556128">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/flask/json/__init__.py"</cite>,
+      line <em class="line">100</em>,
+      in <code class="function">default</code></h4>
+  <div class="source "><pre class="line before"><span class="ws">            </span>return str(o)</pre>
+<pre class="line before"><span class="ws">        </span>if dataclasses and dataclasses.is_dataclass(o):</pre>
+<pre class="line before"><span class="ws">            </span>return dataclasses.asdict(o)</pre>
+<pre class="line before"><span class="ws">        </span>if hasattr(o, &quot;__html__&quot;):</pre>
+<pre class="line before"><span class="ws">            </span>return text_type(o.__html__())</pre>
+<pre class="line current"><span class="ws">        </span>return _json.JSONEncoder.default(self, o)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span>class JSONDecoder(_json.JSONDecoder):</pre>
+<pre class="line after"><span class="ws">    </span>&quot;&quot;&quot;The default JSON decoder.  This one does not change the behavior from</pre>
+<pre class="line after"><span class="ws">    </span>the default simplejson decoder.  Consult the :mod:`json` documentation</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140486987556272">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.8/json/encoder.py"</cite>,
+      line <em class="line">179</em>,
+      in <code class="function">default</code></h4>
+  <div class="source "><pre class="line before"><span class="ws">                    </span>return list(iterable)</pre>
+<pre class="line before"><span class="ws">                </span># Let the base class default method raise the TypeError</pre>
+<pre class="line before"><span class="ws">                </span>return JSONEncoder.default(self, o)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line current"><span class="ws">        </span>raise TypeError(f'Object of type {o.__class__.__name__} '</pre>
+<pre class="line after"><span class="ws">                        </span>f'is not JSON serializable')</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def encode(self, o):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Return a JSON string representation of a Python data structure.</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+</ul>
+  <blockquote>TypeError: Object of type HomeService is not JSON serializable</blockquote>
+</div>
+
+<div class="plain">
+  <form action="/?__debugger__=yes&amp;cmd=paste" method="post">
+    <p>
+      <input type="hidden" name="language" value="pytb">
+      This is the Copy/Paste friendly version of the traceback.  <span
+      class="pastemessage">You can also paste this traceback into
+      a <a href="https://gist.github.com/">gist</a>:
+      <input type="submit" value="create paste"></span>
+    </p>
+    <textarea cols="50" rows="10" name="code" readonly>Traceback (most recent call last):
+  File &quot;/opt/venv/lib/python3.8/site-packages/flask/app.py&quot;, line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File &quot;/opt/venv/lib/python3.8/site-packages/flask/app.py&quot;, line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File &quot;/opt/venv/lib/python3.8/site-packages/flask/app.py&quot;, line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File &quot;/opt/venv/lib/python3.8/site-packages/flask/_compat.py&quot;, line 39, in reraise
+    raise value
+  File &quot;/opt/venv/lib/python3.8/site-packages/flask/app.py&quot;, line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File &quot;/opt/venv/lib/python3.8/site-packages/flask/app.py&quot;, line 1953, in full_dispatch_request
+    return self.finalize_request(rv)
+  File &quot;/opt/venv/lib/python3.8/site-packages/flask/app.py&quot;, line 1970, in finalize_request
+    response = self.process_response(response)
+  File &quot;/opt/venv/lib/python3.8/site-packages/flask/app.py&quot;, line 2269, in process_response
+    self.session_interface.save_session(self, ctx.session, response)
+  File &quot;/opt/venv/lib/python3.8/site-packages/flask/sessions.py&quot;, line 378, in save_session
+    val = self.get_signing_serializer(app).dumps(dict(session))
+  File &quot;/opt/venv/lib/python3.8/site-packages/itsdangerous/serializer.py&quot;, line 166, in dumps
+    payload = want_bytes(self.dump_payload(obj))
+  File &quot;/opt/venv/lib/python3.8/site-packages/itsdangerous/url_safe.py&quot;, line 42, in dump_payload
+    json = super(URLSafeSerializerMixin, self).dump_payload(obj)
+  File &quot;/opt/venv/lib/python3.8/site-packages/itsdangerous/serializer.py&quot;, line 133, in dump_payload
+    return want_bytes(self.serializer.dumps(obj, **self.serializer_kwargs))
+  File &quot;/opt/venv/lib/python3.8/site-packages/flask/json/tag.py&quot;, line 305, in dumps
+    return dumps(self.tag(value), separators=(&quot;,&quot;, &quot;:&quot;))
+  File &quot;/opt/venv/lib/python3.8/site-packages/flask/json/__init__.py&quot;, line 211, in dumps
+    rv = _json.dumps(obj, **kwargs)
+  File &quot;/usr/local/lib/python3.8/json/__init__.py&quot;, line 234, in dumps
+    return cls(
+  File &quot;/usr/local/lib/python3.8/json/encoder.py&quot;, line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File &quot;/usr/local/lib/python3.8/json/encoder.py&quot;, line 257, in iterencode
+    return _iterencode(o, 0)
+  File &quot;/opt/venv/lib/python3.8/site-packages/flask/json/__init__.py&quot;, line 100, in default
+    return _json.JSONEncoder.default(self, o)
+  File &quot;/usr/local/lib/python3.8/json/encoder.py&quot;, line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type HomeService is not JSON serializable</textarea>
+  </form>
+</div>
+<div class="explanation">
+  The debugger caught an exception in your WSGI application.  You can now
+  look at the traceback which led to the error.  <span class="nojavascript">
+  If you enable JavaScript you can also use additional features such as code
+  execution (if the evalex feature is enabled), automatic pasting of the
+  exceptions and much more.</span>
+</div>
+      <div class="footer">
+        Brought to you by <strong class="arthur">DON'T PANIC</strong>, your
+        friendly Werkzeug powered traceback interpreter.
+      </div>
+    </div>
+
+    <div class="pin-prompt">
+      <div class="inner">
+        <h3>Console Locked</h3>
+        <p>
+          The console is locked and needs to be unlocked by entering the PIN.
+          You can find the PIN printed out on the standard output of your
+          shell that runs the server.
+        <form>
+          <p>PIN:
+            <input type=text name=pin size=14>
+            <input type=submit name=btn value="Confirm Pin">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!--
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.8/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/opt/venv/lib/python3.8/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/opt/venv/lib/python3.8/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/opt/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/opt/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/opt/venv/lib/python3.8/site-packages/flask/app.py", line 1953, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/opt/venv/lib/python3.8/site-packages/flask/app.py", line 1970, in finalize_request
+    response = self.process_response(response)
+  File "/opt/venv/lib/python3.8/site-packages/flask/app.py", line 2269, in process_response
+    self.session_interface.save_session(self, ctx.session, response)
+  File "/opt/venv/lib/python3.8/site-packages/flask/sessions.py", line 378, in save_session
+    val = self.get_signing_serializer(app).dumps(dict(session))
+  File "/opt/venv/lib/python3.8/site-packages/itsdangerous/serializer.py", line 166, in dumps
+    payload = want_bytes(self.dump_payload(obj))
+  File "/opt/venv/lib/python3.8/site-packages/itsdangerous/url_safe.py", line 42, in dump_payload
+    json = super(URLSafeSerializerMixin, self).dump_payload(obj)
+  File "/opt/venv/lib/python3.8/site-packages/itsdangerous/serializer.py", line 133, in dump_payload
+    return want_bytes(self.serializer.dumps(obj, **self.serializer_kwargs))
+  File "/opt/venv/lib/python3.8/site-packages/flask/json/tag.py", line 305, in dumps
+    return dumps(self.tag(value), separators=(",", ":"))
+  File "/opt/venv/lib/python3.8/site-packages/flask/json/__init__.py", line 211, in dumps
+    rv = _json.dumps(obj, **kwargs)
+  File "/usr/local/lib/python3.8/json/__init__.py", line 234, in dumps
+    return cls(
+  File "/usr/local/lib/python3.8/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/local/lib/python3.8/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/opt/venv/lib/python3.8/site-packages/flask/json/__init__.py", line 100, in default
+    return _json.JSONEncoder.default(self, o)
+  File "/usr/local/lib/python3.8/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type HomeService is not JSON serializable
+
+-->
+Kã.      _5N=_5N=AþI¿      <    ~1597328874,:http://172.20.0.111:5000/idp/login?next=http%3A%2F%2F172.20.0.111%3A5000%2Fidp%2Fauthorize%3Fresponse_type%3Dcode%26client_id%3D017264%26redirect_uri%3Dhttp%253A%252F%252Fforeign_oidc_rp%253A3000%252Fauth%26scope%3Dopenid%2Bprofile%26state%3DVXmdXTxR1gctbx0pMtb02CxY1bZY6b%26nonce%3DThtKkvamLhy5e27eJnFQ necko:classified 1 strongly-framed 0 request-method POST response-head HTTP/1.0 500 INTERNAL SERVER ERROR
+Content-Type: text/html; charset=utf-8
+X-XSS-Protection: 0
+Server: Werkzeug/1.0.1 Python/3.8.5
+Date: Thu, 13 Aug 2020 14:29:17 GMT
+ original-response-headers Content-Type: text/html; charset=utf-8
+X-XSS-Protection: 0
+Connection: close
+Server: Werkzeug/1.0.1 Python/3.8.5
+Date: Thu, 13 Aug 2020 14:29:17 GMT
+ ctid 1 uncompressed-len 0 net-response-time-onstart 64 net-response-time-onstop 85   ‚s
