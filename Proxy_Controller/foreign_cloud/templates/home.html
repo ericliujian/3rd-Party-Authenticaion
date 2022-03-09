@@ -1,0 +1,20 @@
+{% if error %} {{ error }} <hr> {% endif %}
+{% if user %}
+<pre>
+{{ user|tojson }}
+</pre>
+<a href="/logout">logout</a>
+{% else %}
+<h2>Welcome to our Proxy Controller</h2>
+If you have account on home side, please log in; else please sign up account first. 
+
+<hr>
+<form action="/signup" method="POST">
+    <input type="hidden" name="proxy">
+    <input type="submit" value="Sign up account">
+</form>
+<form action="/login" method="POST">
+    <input type="hidden" name="proxy">
+    <input type="submit" value="Log in ">
+</form>
+{% endif %}

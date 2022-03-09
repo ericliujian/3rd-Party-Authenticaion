@@ -1,0 +1,835 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>requests.exceptions.ConnectionError: HTTPConnectionPool(host='172.20.0.111', port=5000): Max retries exceeded with url: /idp/.well-known/openid-configuration (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x7f8ceecf7070&gt;: Failed to establish a new connection: [Errno 113] No route to host')) // Werkzeug Debugger</title>
+    <link rel="stylesheet" href="?__debugger__=yes&amp;cmd=resource&amp;f=style.css"
+        type="text/css">
+    <!-- We need to make sure this has a favicon so that the debugger does
+         not by accident trigger a request to /favicon.ico which might
+         change the application state. -->
+    <link rel="shortcut icon"
+        href="?__debugger__=yes&amp;cmd=resource&amp;f=console.png">
+    <script src="?__debugger__=yes&amp;cmd=resource&amp;f=jquery.js"></script>
+    <script src="?__debugger__=yes&amp;cmd=resource&amp;f=debugger.js"></script>
+    <script type="text/javascript">
+      var TRACEBACK = 140243279242048,
+          CONSOLE_MODE = false,
+          EVALEX = true,
+          EVALEX_TRUSTED = false,
+          SECRET = "KrSIPvQ7cU76PTgHO3IT";
+    </script>
+  </head>
+  <body style="background-color: #fff">
+    <div class="debugger">
+<h1>requests.exceptions.ConnectionError</h1>
+<div class="detail">
+  <p class="errormsg">requests.exceptions.ConnectionError: HTTPConnectionPool(host='172.20.0.111', port=5000): Max retries exceeded with url: /idp/.well-known/openid-configuration (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x7f8ceecf7070&gt;: Failed to establish a new connection: [Errno 113] No route to host'))</p>
+</div>
+<h2 class="traceback">Traceback <em>(most recent call last)</em></h2>
+<div class="traceback">
+  
+  <ul><li><div class="frame" id="frame-140243278723200">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/urllib3/connection.py"</cite>,
+      line <em class="line">159</em>,
+      in <code class="function">_new_conn</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>if self.socket_options:</pre>
+<pre class="line before"><span class="ws">            </span>extra_kw[&quot;socket_options&quot;] = self.socket_options</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line current"><span class="ws">            </span>conn = connection.create_connection(</pre>
+<pre class="line after"><span class="ws">                </span>(self._dns_host, self.port), self.timeout, **extra_kw</pre>
+<pre class="line after"><span class="ws">            </span>)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>except SocketTimeout:</pre>
+<pre class="line after"><span class="ws">            </span>raise ConnectTimeoutError(</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278723392">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/urllib3/util/connection.py"</cite>,
+      line <em class="line">84</em>,
+      in <code class="function">create_connection</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span>if sock is not None:</pre>
+<pre class="line before"><span class="ws">                </span>sock.close()</pre>
+<pre class="line before"><span class="ws">                </span>sock = None</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>if err is not None:</pre>
+<pre class="line current"><span class="ws">        </span>raise err</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>raise socket.error(&quot;getaddrinfo returns an empty list&quot;)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span>def _set_socket_options(sock, options):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278723536">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/urllib3/util/connection.py"</cite>,
+      line <em class="line">74</em>,
+      in <code class="function">create_connection</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">            </span>if timeout is not socket._GLOBAL_DEFAULT_TIMEOUT:</pre>
+<pre class="line before"><span class="ws">                </span>sock.settimeout(timeout)</pre>
+<pre class="line before"><span class="ws">            </span>if source_address:</pre>
+<pre class="line before"><span class="ws">                </span>sock.bind(source_address)</pre>
+<pre class="line current"><span class="ws">            </span>sock.connect(sa)</pre>
+<pre class="line after"><span class="ws">            </span>return sock</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>except socket.error as e:</pre>
+<pre class="line after"><span class="ws">            </span>err = e</pre>
+<pre class="line after"><span class="ws">            </span>if sock is not None:</pre></div>
+</div>
+
+<li><div class="exc-divider">During handling of the above exception, another exception occurred:</div>
+<li><div class="frame" id="frame-140243278722528">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/urllib3/connectionpool.py"</cite>,
+      line <em class="line">670</em>,
+      in <code class="function">urlopen</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span>)</pre>
+<pre class="line before"><span class="ws">            </span>if is_new_proxy_conn:</pre>
+<pre class="line before"><span class="ws">                </span>self._prepare_proxy(conn)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">            </span># Make the request on the httplib connection object.</pre>
+<pre class="line current"><span class="ws">            </span>httplib_response = self._make_request(</pre>
+<pre class="line after"><span class="ws">                </span>conn,</pre>
+<pre class="line after"><span class="ws">                </span>method,</pre>
+<pre class="line after"><span class="ws">                </span>url,</pre>
+<pre class="line after"><span class="ws">                </span>timeout=timeout_obj,</pre>
+<pre class="line after"><span class="ws">                </span>body=body,</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278722864">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/urllib3/connectionpool.py"</cite>,
+      line <em class="line">392</em>,
+      in <code class="function">_make_request</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span># conn.request() calls httplib.*.request, not the method in</pre>
+<pre class="line before"><span class="ws">        </span># urllib3.request. It also calls makefile (recv) on the socket.</pre>
+<pre class="line before"><span class="ws">        </span>if chunked:</pre>
+<pre class="line before"><span class="ws">            </span>conn.request_chunked(method, url, **httplib_request_kw)</pre>
+<pre class="line before"><span class="ws">        </span>else:</pre>
+<pre class="line current"><span class="ws">            </span>conn.request(method, url, **httplib_request_kw)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span># Reset the timeout for the recv() on the socket</pre>
+<pre class="line after"><span class="ws">        </span>read_timeout = timeout_obj.read_timeout</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span># App Engine doesn't have a sock attr</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278722912">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.8/http/client.py"</cite>,
+      line <em class="line">1255</em>,
+      in <code class="function">request</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span>self._send_output(message_body, encode_chunked=encode_chunked)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def request(self, method, url, body=None, headers={}, *,</pre>
+<pre class="line before"><span class="ws">                </span>encode_chunked=False):</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;Send a complete request to the server.&quot;&quot;&quot;</pre>
+<pre class="line current"><span class="ws">        </span>self._send_request(method, url, body, headers, encode_chunked)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def _send_request(self, method, url, body, headers, encode_chunked):</pre>
+<pre class="line after"><span class="ws">        </span># Honor explicitly requested Host: and Accept-Encoding: headers.</pre>
+<pre class="line after"><span class="ws">        </span>header_names = frozenset(k.lower() for k in headers)</pre>
+<pre class="line after"><span class="ws">        </span>skips = {}</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278722720">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.8/http/client.py"</cite>,
+      line <em class="line">1301</em>,
+      in <code class="function">_send_request</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span>self.putheader(hdr, value)</pre>
+<pre class="line before"><span class="ws">        </span>if isinstance(body, str):</pre>
+<pre class="line before"><span class="ws">            </span># RFC 2616 Section 3.7.1 says that text default has a</pre>
+<pre class="line before"><span class="ws">            </span># default charset of iso-8859-1.</pre>
+<pre class="line before"><span class="ws">            </span>body = _encode(body, 'body')</pre>
+<pre class="line current"><span class="ws">        </span>self.endheaders(body, encode_chunked=encode_chunked)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def getresponse(self):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Get the response from the server.</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>If the HTTPConnection is in the correct state, returns an</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278722576">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.8/http/client.py"</cite>,
+      line <em class="line">1250</em>,
+      in <code class="function">endheaders</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>if self.__state == _CS_REQ_STARTED:</pre>
+<pre class="line before"><span class="ws">            </span>self.__state = _CS_REQ_SENT</pre>
+<pre class="line before"><span class="ws">        </span>else:</pre>
+<pre class="line before"><span class="ws">            </span>raise CannotSendHeader()</pre>
+<pre class="line current"><span class="ws">        </span>self._send_output(message_body, encode_chunked=encode_chunked)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def request(self, method, url, body=None, headers={}, *,</pre>
+<pre class="line after"><span class="ws">                </span>encode_chunked=False):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Send a complete request to the server.&quot;&quot;&quot;</pre>
+<pre class="line after"><span class="ws">        </span>self._send_request(method, url, body, headers, encode_chunked)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278723056">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.8/http/client.py"</cite>,
+      line <em class="line">1010</em>,
+      in <code class="function">_send_output</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span>A message_body may be specified, to be appended to the request.</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>self._buffer.extend((b&quot;&quot;, b&quot;&quot;))</pre>
+<pre class="line before"><span class="ws">        </span>msg = b&quot;\r\n&quot;.join(self._buffer)</pre>
+<pre class="line before"><span class="ws">        </span>del self._buffer[:]</pre>
+<pre class="line current"><span class="ws">        </span>self.send(msg)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>if message_body is not None:</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">            </span># create a consistent interface to message_body</pre>
+<pre class="line after"><span class="ws">            </span>if hasattr(message_body, 'read'):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278723104">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.8/http/client.py"</cite>,
+      line <em class="line">950</em>,
+      in <code class="function">send</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span>file-like object that supports a .read() method, or an iterable object.</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>if self.sock is None:</pre>
+<pre class="line before"><span class="ws">            </span>if self.auto_open:</pre>
+<pre class="line current"><span class="ws">                </span>self.connect()</pre>
+<pre class="line after"><span class="ws">            </span>else:</pre>
+<pre class="line after"><span class="ws">                </span>raise NotConnected()</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>if self.debuglevel &gt; 0:</pre>
+<pre class="line after"><span class="ws">            </span>print(&quot;send:&quot;, repr(data))</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278723152">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/urllib3/connection.py"</cite>,
+      line <em class="line">187</em>,
+      in <code class="function">connect</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span>self._tunnel()</pre>
+<pre class="line before"><span class="ws">            </span># Mark this connection as not reusable</pre>
+<pre class="line before"><span class="ws">            </span>self.auto_open = 0</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def connect(self):</pre>
+<pre class="line current"><span class="ws">        </span>conn = self._new_conn()</pre>
+<pre class="line after"><span class="ws">        </span>self._prepare_conn(conn)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def putrequest(self, method, url, *args, **kwargs):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Send a request to the server&quot;&quot;&quot;</pre>
+<pre class="line after"><span class="ws">        </span>match = _CONTAINS_CONTROL_CHAR_RE.search(method)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278723008">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/urllib3/connection.py"</cite>,
+      line <em class="line">171</em>,
+      in <code class="function">_new_conn</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">                </span>&quot;Connection to %s timed out. (connect timeout=%s)&quot;</pre>
+<pre class="line before"><span class="ws">                </span>% (self.host, self.timeout),</pre>
+<pre class="line before"><span class="ws">            </span>)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>except SocketError as e:</pre>
+<pre class="line current"><span class="ws">            </span>raise NewConnectionError(</pre>
+<pre class="line after"><span class="ws">                </span>self, &quot;Failed to establish a new connection: %s&quot; % e</pre>
+<pre class="line after"><span class="ws">            </span>)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>return conn</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="exc-divider">During handling of the above exception, another exception occurred:</div>
+<li><div class="frame" id="frame-140243278722432">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/requests/adapters.py"</cite>,
+      line <em class="line">439</em>,
+      in <code class="function">send</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span>else:</pre>
+<pre class="line before"><span class="ws">            </span>timeout = TimeoutSauce(connect=timeout, read=timeout)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>if not chunked:</pre>
+<pre class="line current"><span class="ws">                </span>resp = conn.urlopen(</pre>
+<pre class="line after"><span class="ws">                    </span>method=request.method,</pre>
+<pre class="line after"><span class="ws">                    </span>url=url,</pre>
+<pre class="line after"><span class="ws">                    </span>body=request.body,</pre>
+<pre class="line after"><span class="ws">                    </span>headers=request.headers,</pre>
+<pre class="line after"><span class="ws">                    </span>redirect=False,</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278722624">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/urllib3/connectionpool.py"</cite>,
+      line <em class="line">724</em>,
+      in <code class="function">urlopen</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span>elif isinstance(e, (SocketError, NewConnectionError)) and self.proxy:</pre>
+<pre class="line before"><span class="ws">                </span>e = ProxyError(&quot;Cannot connect to proxy.&quot;, e)</pre>
+<pre class="line before"><span class="ws">            </span>elif isinstance(e, (SocketError, HTTPException)):</pre>
+<pre class="line before"><span class="ws">                </span>e = ProtocolError(&quot;Connection aborted.&quot;, e)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line current"><span class="ws">            </span>retries = retries.increment(</pre>
+<pre class="line after"><span class="ws">                </span>method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]</pre>
+<pre class="line after"><span class="ws">            </span>)</pre>
+<pre class="line after"><span class="ws">            </span>retries.sleep()</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">            </span># Keep track of the error for the retry warning.</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278722672">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/urllib3/util/retry.py"</cite>,
+      line <em class="line">439</em>,
+      in <code class="function">increment</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span>status=status_count,</pre>
+<pre class="line before"><span class="ws">            </span>history=history,</pre>
+<pre class="line before"><span class="ws">        </span>)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>if new_retry.is_exhausted():</pre>
+<pre class="line current"><span class="ws">            </span>raise MaxRetryError(_pool, url, error or ResponseError(cause))</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>log.debug(&quot;Incremented Retry for (url='%s'): %r&quot;, url, new_retry)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>return new_retry</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="exc-divider">During handling of the above exception, another exception occurred:</div>
+<li><div class="frame" id="frame-140243279244976">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/flask/app.py"</cite>,
+      line <em class="line">2464</em>,
+      in <code class="function">__call__</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def __call__(self, environ, start_response):</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;The WSGI server calls the Flask application object as the</pre>
+<pre class="line before"><span class="ws">        </span>WSGI application. This calls :meth:`wsgi_app` which can be</pre>
+<pre class="line before"><span class="ws">        </span>wrapped to applying middleware.&quot;&quot;&quot;</pre>
+<pre class="line current"><span class="ws">        </span>return self.wsgi_app(environ, start_response)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def __repr__(self):</pre>
+<pre class="line after"><span class="ws">        </span>return &quot;&lt;%s %r&gt;&quot; % (self.__class__.__name__, self.name)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243279244880">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/flask/app.py"</cite>,
+      line <em class="line">2450</em>,
+      in <code class="function">wsgi_app</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>ctx.push()</pre>
+<pre class="line before"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
+<pre class="line before"><span class="ws">            </span>except Exception as e:</pre>
+<pre class="line before"><span class="ws">                </span>error = e</pre>
+<pre class="line current"><span class="ws">                </span>response = self.handle_exception(e)</pre>
+<pre class="line after"><span class="ws">            </span>except:  # noqa: B001</pre>
+<pre class="line after"><span class="ws">                </span>error = sys.exc_info()[1]</pre>
+<pre class="line after"><span class="ws">                </span>raise</pre>
+<pre class="line after"><span class="ws">            </span>return response(environ, start_response)</pre>
+<pre class="line after"><span class="ws">        </span>finally:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243279244832">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/flask/app.py"</cite>,
+      line <em class="line">1867</em>,
+      in <code class="function">handle_exception</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span># if we want to repropagate the exception, we can attempt to</pre>
+<pre class="line before"><span class="ws">            </span># raise it with the whole traceback in case we can do that</pre>
+<pre class="line before"><span class="ws">            </span># (the function was actually called from the except part)</pre>
+<pre class="line before"><span class="ws">            </span># otherwise, we just raise the error again</pre>
+<pre class="line before"><span class="ws">            </span>if exc_value is e:</pre>
+<pre class="line current"><span class="ws">                </span>reraise(exc_type, exc_value, tb)</pre>
+<pre class="line after"><span class="ws">            </span>else:</pre>
+<pre class="line after"><span class="ws">                </span>raise e</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>self.log_exception((exc_type, exc_value, tb))</pre>
+<pre class="line after"><span class="ws">        </span>server_error = InternalServerError()</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243279245024">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/flask/_compat.py"</cite>,
+      line <em class="line">39</em>,
+      in <code class="function">reraise</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">    </span>import collections.abc as collections_abc</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def reraise(tp, value, tb=None):</pre>
+<pre class="line before"><span class="ws">        </span>if value.__traceback__ is not tb:</pre>
+<pre class="line before"><span class="ws">            </span>raise value.with_traceback(tb)</pre>
+<pre class="line current"><span class="ws">        </span>raise value</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>implements_to_string = _identity</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span>else:</pre>
+<pre class="line after"><span class="ws">    </span>iterkeys = lambda d: d.iterkeys()</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278721568">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/flask/app.py"</cite>,
+      line <em class="line">2447</em>,
+      in <code class="function">wsgi_app</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span>ctx = self.request_context(environ)</pre>
+<pre class="line before"><span class="ws">        </span>error = None</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>ctx.push()</pre>
+<pre class="line current"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
+<pre class="line after"><span class="ws">            </span>except Exception as e:</pre>
+<pre class="line after"><span class="ws">                </span>error = e</pre>
+<pre class="line after"><span class="ws">                </span>response = self.handle_exception(e)</pre>
+<pre class="line after"><span class="ws">            </span>except:  # noqa: B001</pre>
+<pre class="line after"><span class="ws">                </span>error = sys.exc_info()[1]</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278721760">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/flask/app.py"</cite>,
+      line <em class="line">1952</em>,
+      in <code class="function">full_dispatch_request</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span>request_started.send(self)</pre>
+<pre class="line before"><span class="ws">            </span>rv = self.preprocess_request()</pre>
+<pre class="line before"><span class="ws">            </span>if rv is None:</pre>
+<pre class="line before"><span class="ws">                </span>rv = self.dispatch_request()</pre>
+<pre class="line before"><span class="ws">        </span>except Exception as e:</pre>
+<pre class="line current"><span class="ws">            </span>rv = self.handle_user_exception(e)</pre>
+<pre class="line after"><span class="ws">        </span>return self.finalize_request(rv)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def finalize_request(self, rv, from_error_handler=False):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Given the return value from a view function this finalizes</pre>
+<pre class="line after"><span class="ws">        </span>the request by converting it into a response and invoking the</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278721808">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/flask/app.py"</cite>,
+      line <em class="line">1821</em>,
+      in <code class="function">handle_user_exception</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span>return self.handle_http_exception(e)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>handler = self._find_error_handler(e)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>if handler is None:</pre>
+<pre class="line current"><span class="ws">            </span>reraise(exc_type, exc_value, tb)</pre>
+<pre class="line after"><span class="ws">        </span>return handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_exception(self, e):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Handle an exception that did not have an error handler</pre>
+<pre class="line after"><span class="ws">        </span>associated with it, or that was raised from an error handler.</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278721856">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/flask/_compat.py"</cite>,
+      line <em class="line">39</em>,
+      in <code class="function">reraise</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">    </span>import collections.abc as collections_abc</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def reraise(tp, value, tb=None):</pre>
+<pre class="line before"><span class="ws">        </span>if value.__traceback__ is not tb:</pre>
+<pre class="line before"><span class="ws">            </span>raise value.with_traceback(tb)</pre>
+<pre class="line current"><span class="ws">        </span>raise value</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>implements_to_string = _identity</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span>else:</pre>
+<pre class="line after"><span class="ws">    </span>iterkeys = lambda d: d.iterkeys()</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278721904">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/flask/app.py"</cite>,
+      line <em class="line">1950</em>,
+      in <code class="function">full_dispatch_request</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span>self.try_trigger_before_first_request_functions()</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>request_started.send(self)</pre>
+<pre class="line before"><span class="ws">            </span>rv = self.preprocess_request()</pre>
+<pre class="line before"><span class="ws">            </span>if rv is None:</pre>
+<pre class="line current"><span class="ws">                </span>rv = self.dispatch_request()</pre>
+<pre class="line after"><span class="ws">        </span>except Exception as e:</pre>
+<pre class="line after"><span class="ws">            </span>rv = self.handle_user_exception(e)</pre>
+<pre class="line after"><span class="ws">        </span>return self.finalize_request(rv)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def finalize_request(self, rv, from_error_handler=False):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278721952">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/flask/app.py"</cite>,
+      line <em class="line">1936</em>,
+      in <code class="function">dispatch_request</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span>getattr(rule, &quot;provide_automatic_options&quot;, False)</pre>
+<pre class="line before"><span class="ws">            </span>and req.method == &quot;OPTIONS&quot;</pre>
+<pre class="line before"><span class="ws">        </span>):</pre>
+<pre class="line before"><span class="ws">            </span>return self.make_default_options_response()</pre>
+<pre class="line before"><span class="ws">        </span># otherwise dispatch to the handler for that endpoint</pre>
+<pre class="line current"><span class="ws">        </span>return self.view_functions[rule.endpoint](**req.view_args)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def full_dispatch_request(self):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Dispatches the request and on top of that performs request</pre>
+<pre class="line after"><span class="ws">        </span>pre and postprocessing as well as HTTP exception catching and</pre>
+<pre class="line after"><span class="ws">        </span>error handling.</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278722000">
+  <h4>File <cite class="filename">"/src/app.py"</cite>,
+      line <em class="line">37</em>,
+      in <code class="function">login</code></h4>
+  <div class="source "><pre class="line before"><span class="ws"></span>@app.route('/login', methods=['POST'])</pre>
+<pre class="line before"><span class="ws"></span>def login():</pre>
+<pre class="line before"><span class="ws">    </span>if 'proxy' in request.form:</pre>
+<pre class="line before"><span class="ws">        </span>oauth = initializeOAuth()</pre>
+<pre class="line before"><span class="ws">        </span>redirect_uri = url_for('auth', _external=True)</pre>
+<pre class="line current"><span class="ws">        </span>return oauth.service.authorize_redirect(redirect_uri)</pre>
+<pre class="line after"><span class="ws">    </span>return redirect(url_for('homepage'))</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span>@app.route('/auth')</pre>
+<pre class="line after"><span class="ws"></span>def auth():</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278722096">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/authlib/integrations/flask_client/remote_app.py"</cite>,
+      line <em class="line">58</em>,
+      in <code class="function">authorize_redirect</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>:param redirect_uri: Callback or redirect URI for authorization.</pre>
+<pre class="line before"><span class="ws">        </span>:param kwargs: Extra parameters to include.</pre>
+<pre class="line before"><span class="ws">        </span>:return: A HTTP redirect response.</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line current"><span class="ws">        </span>rv = self.create_authorization_url(redirect_uri, **kwargs)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>if self.request_token_url:</pre>
+<pre class="line after"><span class="ws">            </span>request_token = rv.pop('request_token', None)</pre>
+<pre class="line after"><span class="ws">            </span>self._save_request_token(request_token)</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278722192">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/authlib/integrations/base_client/remote_app.py"</cite>,
+      line <em class="line">56</em>,
+      in <code class="function">create_authorization_url</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>:param redirect_uri: Callback or redirect URI for authorization.</pre>
+<pre class="line before"><span class="ws">        </span>:param kwargs: Extra parameters to include.</pre>
+<pre class="line before"><span class="ws">        </span>:return: dict</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line current"><span class="ws">        </span>metadata = self.load_server_metadata()</pre>
+<pre class="line after"><span class="ws">        </span>authorization_endpoint = self.authorize_url</pre>
+<pre class="line after"><span class="ws">        </span>if not authorization_endpoint and not self.request_token_url:</pre>
+<pre class="line after"><span class="ws">            </span>authorization_endpoint = metadata.get('authorization_endpoint')</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>if not authorization_endpoint:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278721664">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/authlib/integrations/base_client/remote_app.py"</cite>,
+      line <em class="line">20</em>,
+      in <code class="function">load_server_metadata</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws"></span>class RemoteApp(BaseApp):</pre>
+<pre class="line before"><span class="ws">    </span>def load_server_metadata(self):</pre>
+<pre class="line before"><span class="ws">        </span>if self._server_metadata_url and '_loaded_at' not in self.server_metadata:</pre>
+<pre class="line current"><span class="ws">            </span>metadata = self._fetch_server_metadata(self._server_metadata_url)</pre>
+<pre class="line after"><span class="ws">            </span>metadata['_loaded_at'] = time.time()</pre>
+<pre class="line after"><span class="ws">            </span>self.server_metadata.update(metadata)</pre>
+<pre class="line after"><span class="ws">        </span>return self.server_metadata</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def _on_update_token(self, token, refresh_token=None, access_token=None):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278722144">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/authlib/integrations/base_client/base_app.py"</cite>,
+      line <em class="line">241</em>,
+      in <code class="function">_fetch_server_metadata</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>return self.request('DELETE', url, **kwargs)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def _fetch_server_metadata(self, url):</pre>
+<pre class="line before"><span class="ws">        </span>with self._get_oauth_client() as session:</pre>
+<pre class="line current"><span class="ws">            </span>resp = session.request('GET', url, withhold_token=True)</pre>
+<pre class="line after"><span class="ws">            </span>return resp.json()</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278721712">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/authlib/integrations/requests_client/oauth2_session.py"</cite>,
+      line <em class="line">112</em>,
+      in <code class="function">request</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;Send request with auto refresh token feature (if available).&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>if not withhold_token and auth is None:</pre>
+<pre class="line before"><span class="ws">            </span>if not self.token:</pre>
+<pre class="line before"><span class="ws">                </span>raise MissingTokenError()</pre>
+<pre class="line before"><span class="ws">            </span>auth = self.token_auth</pre>
+<pre class="line current"><span class="ws">        </span>return super(OAuth2Session, self).request(</pre>
+<pre class="line after"><span class="ws">            </span>method, url, auth=auth, **kwargs)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>@staticmethod</pre>
+<pre class="line after"><span class="ws">    </span>def handle_error(error_type, error_description):</pre>
+<pre class="line after"><span class="ws">        </span>raise OAuthError(error_type, error_description)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278722240">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/requests/sessions.py"</cite>,
+      line <em class="line">530</em>,
+      in <code class="function">request</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span>send_kwargs = {</pre>
+<pre class="line before"><span class="ws">            </span>'timeout': timeout,</pre>
+<pre class="line before"><span class="ws">            </span>'allow_redirects': allow_redirects,</pre>
+<pre class="line before"><span class="ws">        </span>}</pre>
+<pre class="line before"><span class="ws">        </span>send_kwargs.update(settings)</pre>
+<pre class="line current"><span class="ws">        </span>resp = self.send(prep, **send_kwargs)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>return resp</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def get(self, url, **kwargs):</pre>
+<pre class="line after"><span class="ws">        </span>r&quot;&quot;&quot;Sends a GET request. Returns :class:`Response` object.</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278722288">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/requests/sessions.py"</cite>,
+      line <em class="line">643</em>,
+      in <code class="function">send</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span># Start time (approximately) of the request</pre>
+<pre class="line before"><span class="ws">        </span>start = preferred_clock()</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span># Send the request</pre>
+<pre class="line current"><span class="ws">        </span>r = adapter.send(request, **kwargs)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span># Total elapsed time of the request (approximately)</pre>
+<pre class="line after"><span class="ws">        </span>elapsed = preferred_clock() - start</pre>
+<pre class="line after"><span class="ws">        </span>r.elapsed = timedelta(seconds=elapsed)</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-140243278722336">
+  <h4>File <cite class="filename">"/opt/venv/lib/python3.8/site-packages/requests/adapters.py"</cite>,
+      line <em class="line">516</em>,
+      in <code class="function">send</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">            </span>if isinstance(e.reason, _SSLError):</pre>
+<pre class="line before"><span class="ws">                </span># This branch is for urllib3 v1.22 and later.</pre>
+<pre class="line before"><span class="ws">                </span>raise SSLError(e, request=request)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line current"><span class="ws">            </span>raise ConnectionError(e, request=request)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>except ClosedPoolError as e:</pre>
+<pre class="line after"><span class="ws">            </span>raise ConnectionError(e, request=request)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>except _ProxyError as e:</pre></div>
+</div>
+</ul>
+  <blockquote>requests.exceptions.ConnectionError: HTTPConnectionPool(host='172.20.0.111', port=5000): Max retries exceeded with url: /idp/.well-known/openid-configuration (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x7f8ceecf7070&gt;: Failed to establish a new connection: [Errno 113] No route to host'))</blockquote>
+</div>
+
+<div class="plain">
+  <form action="/?__debugger__=yes&amp;cmd=paste" method="post">
+    <p>
+      <input type="hidden" name="language" value="pytb">
+      This is the Copy/Paste friendly version of the traceback.  <span
+      class="pastemessage">You can also paste this traceback into
+      a <a href="https://gist.github.com/">gist</a>:
+      <input type="submit" value="create paste"></span>
+    </p>
+    <textarea cols="50" rows="10" name="code" readonly>Traceback (most recent call last):
+  File &quot;/opt/venv/lib/python3.8/site-packages/urllib3/connection.py&quot;, line 159, in _new_conn
+    conn = connection.create_connection(
+  File &quot;/opt/venv/lib/python3.8/site-packages/urllib3/util/connection.py&quot;, line 84, in create_connection
+    raise err
+  File &quot;/opt/venv/lib/python3.8/site-packages/urllib3/util/connection.py&quot;, line 74, in create_connection
+    sock.connect(sa)
+OSError: [Errno 113] No route to host
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;/opt/venv/lib/python3.8/site-packages/urllib3/connectionpool.py&quot;, line 670, in urlopen
+    httplib_response = self._make_request(
+  File &quot;/opt/venv/lib/python3.8/site-packages/urllib3/connectionpool.py&quot;, line 392, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File &quot;/usr/local/lib/python3.8/http/client.py&quot;, line 1255, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File &quot;/usr/local/lib/python3.8/http/client.py&quot;, line 1301, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File &quot;/usr/local/lib/python3.8/http/client.py&quot;, line 1250, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File &quot;/usr/local/lib/python3.8/http/client.py&quot;, line 1010, in _send_output
+    self.send(msg)
+  File &quot;/usr/local/lib/python3.8/http/client.py&quot;, line 950, in send
+    self.connect()
+  File &quot;/opt/venv/lib/python3.8/site-packages/urllib3/connection.py&quot;, line 187, in connect
+    conn = self._new_conn()
+  File &quot;/opt/venv/lib/python3.8/site-packages/urllib3/connection.py&quot;, line 171, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x7f8ceecf7070&gt;: Failed to establish a new connection: [Errno 113] No route to host
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;/opt/venv/lib/python3.8/site-packages/requests/adapters.py&quot;, line 439, in send
+    resp = conn.urlopen(
+  File &quot;/opt/venv/lib/python3.8/site-packages/urllib3/connectionpool.py&quot;, line 724, in urlopen
+    retries = retries.increment(
+  File &quot;/opt/venv/lib/python3.8/site-packages/urllib3/util/retry.py&quot;, line 439, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='172.20.0.111', port=5000): Max retries exceeded with url: /idp/.well-known/openid-configuration (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x7f8ceecf7070&gt;: Failed to establish a new connection: [Errno 113] No route to host'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;/opt/venv/lib/python3.8/site-packages/flask/app.py&quot;, line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File &quot;/opt/venv/lib/python3.8/site-packages/flask/app.py&quot;, line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File &quot;/opt/venv/lib/python3.8/site-packages/flask/app.py&quot;, line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File &quot;/opt/venv/lib/python3.8/site-packages/flask/_compat.py&quot;, line 39, in reraise
+    raise value
+  File &quot;/opt/venv/lib/python3.8/site-packages/flask/app.py&quot;, line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File &quot;/opt/venv/lib/python3.8/site-packages/flask/app.py&quot;, line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File &quot;/opt/venv/lib/python3.8/site-packages/flask/app.py&quot;, line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File &quot;/opt/venv/lib/python3.8/site-packages/flask/_compat.py&quot;, line 39, in reraise
+    raise value
+  File &quot;/opt/venv/lib/python3.8/site-packages/flask/app.py&quot;, line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File &quot;/opt/venv/lib/python3.8/site-packages/flask/app.py&quot;, line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File &quot;/src/app.py&quot;, line 37, in login
+    return oauth.service.authorize_redirect(redirect_uri)
+  File &quot;/opt/venv/lib/python3.8/site-packages/authlib/integrations/flask_client/remote_app.py&quot;, line 58, in authorize_redirect
+    rv = self.create_authorization_url(redirect_uri, **kwargs)
+  File &quot;/opt/venv/lib/python3.8/site-packages/authlib/integrations/base_client/remote_app.py&quot;, line 56, in create_authorization_url
+    metadata = self.load_server_metadata()
+  File &quot;/opt/venv/lib/python3.8/site-packages/authlib/integrations/base_client/remote_app.py&quot;, line 20, in load_server_metadata
+    metadata = self._fetch_server_metadata(self._server_metadata_url)
+  File &quot;/opt/venv/lib/python3.8/site-packages/authlib/integrations/base_client/base_app.py&quot;, line 241, in _fetch_server_metadata
+    resp = session.request('GET', url, withhold_token=True)
+  File &quot;/opt/venv/lib/python3.8/site-packages/authlib/integrations/requests_client/oauth2_session.py&quot;, line 112, in request
+    return super(OAuth2Session, self).request(
+  File &quot;/opt/venv/lib/python3.8/site-packages/requests/sessions.py&quot;, line 530, in request
+    resp = self.send(prep, **send_kwargs)
+  File &quot;/opt/venv/lib/python3.8/site-packages/requests/sessions.py&quot;, line 643, in send
+    r = adapter.send(request, **kwargs)
+  File &quot;/opt/venv/lib/python3.8/site-packages/requests/adapters.py&quot;, line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='172.20.0.111', port=5000): Max retries exceeded with url: /idp/.well-known/openid-configuration (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x7f8ceecf7070&gt;: Failed to establish a new connection: [Errno 113] No route to host'))</textarea>
+  </form>
+</div>
+<div class="explanation">
+  The debugger caught an exception in your WSGI application.  You can now
+  look at the traceback which led to the error.  <span class="nojavascript">
+  If you enable JavaScript you can also use additional features such as code
+  execution (if the evalex feature is enabled), automatic pasting of the
+  exceptions and much more.</span>
+</div>
+      <div class="footer">
+        Brought to you by <strong class="arthur">DON'T PANIC</strong>, your
+        friendly Werkzeug powered traceback interpreter.
+      </div>
+    </div>
+
+    <div class="pin-prompt">
+      <div class="inner">
+        <h3>Console Locked</h3>
+        <p>
+          The console is locked and needs to be unlocked by entering the PIN.
+          You can find the PIN printed out on the standard output of your
+          shell that runs the server.
+        <form>
+          <p>PIN:
+            <input type=text name=pin size=14>
+            <input type=submit name=btn value="Confirm Pin">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!--
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.8/site-packages/urllib3/connection.py", line 159, in _new_conn
+    conn = connection.create_connection(
+  File "/opt/venv/lib/python3.8/site-packages/urllib3/util/connection.py", line 84, in create_connection
+    raise err
+  File "/opt/venv/lib/python3.8/site-packages/urllib3/util/connection.py", line 74, in create_connection
+    sock.connect(sa)
+OSError: [Errno 113] No route to host
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 670, in urlopen
+    httplib_response = self._make_request(
+  File "/opt/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 392, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/usr/local/lib/python3.8/http/client.py", line 1255, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/local/lib/python3.8/http/client.py", line 1301, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/local/lib/python3.8/http/client.py", line 1250, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/local/lib/python3.8/http/client.py", line 1010, in _send_output
+    self.send(msg)
+  File "/usr/local/lib/python3.8/http/client.py", line 950, in send
+    self.connect()
+  File "/opt/venv/lib/python3.8/site-packages/urllib3/connection.py", line 187, in connect
+    conn = self._new_conn()
+  File "/opt/venv/lib/python3.8/site-packages/urllib3/connection.py", line 171, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f8ceecf7070>: Failed to establish a new connection: [Errno 113] No route to host
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.8/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/opt/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 724, in urlopen
+    retries = retries.increment(
+  File "/opt/venv/lib/python3.8/site-packages/urllib3/util/retry.py", line 439, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='172.20.0.111', port=5000): Max retries exceeded with url: /idp/.well-known/openid-configuration (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f8ceecf7070>: Failed to establish a new connection: [Errno 113] No route to host'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.8/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/opt/venv/lib/python3.8/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/opt/venv/lib/python3.8/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/opt/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/opt/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/opt/venv/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/opt/venv/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/opt/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/opt/venv/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/opt/venv/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/src/app.py", line 37, in login
+    return oauth.service.authorize_redirect(redirect_uri)
+  File "/opt/venv/lib/python3.8/site-packages/authlib/integrations/flask_client/remote_app.py", line 58, in authorize_redirect
+    rv = self.create_authorization_url(redirect_uri, **kwargs)
+  File "/opt/venv/lib/python3.8/site-packages/authlib/integrations/base_client/remote_app.py", line 56, in create_authorization_url
+    metadata = self.load_server_metadata()
+  File "/opt/venv/lib/python3.8/site-packages/authlib/integrations/base_client/remote_app.py", line 20, in load_server_metadata
+    metadata = self._fetch_server_metadata(self._server_metadata_url)
+  File "/opt/venv/lib/python3.8/site-packages/authlib/integrations/base_client/base_app.py", line 241, in _fetch_server_metadata
+    resp = session.request('GET', url, withhold_token=True)
+  File "/opt/venv/lib/python3.8/site-packages/authlib/integrations/requests_client/oauth2_session.py", line 112, in request
+    return super(OAuth2Session, self).request(
+  File "/opt/venv/lib/python3.8/site-packages/requests/sessions.py", line 530, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/opt/venv/lib/python3.8/site-packages/requests/sessions.py", line 643, in send
+    r = adapter.send(request, **kwargs)
+  File "/opt/venv/lib/python3.8/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='172.20.0.111', port=5000): Max retries exceeded with url: /idp/.well-known/openid-configuration (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f8ceecf7070>: Failed to establish a new connection: [Errno 113] No route to host'))
+
+-->
+ÂA==Û      _5SÂ_5SÅAþM’       .    ~1597330367,:http://foreign_oidc_rp:3000/login necko:classified 1 strongly-framed 0 request-method POST response-head HTTP/1.0 500 INTERNAL SERVER ERROR
+Content-Type: text/html; charset=utf-8
+X-XSS-Protection: 0
+Server: Werkzeug/1.0.1 Python/3.8.5
+Date: Thu, 13 Aug 2020 14:52:53 GMT
+ original-response-headers Content-Type: text/html; charset=utf-8
+X-XSS-Protection: 0
+Connection: close
+Server: Werkzeug/1.0.1 Python/3.8.5
+Date: Thu, 13 Aug 2020 14:52:53 GMT
+ ctid 1 uncompressed-len 0 net-response-time-onstart 3128 net-response-time-onstop 3134   ç‚

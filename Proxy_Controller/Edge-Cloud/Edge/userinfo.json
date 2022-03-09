@@ -1,0 +1,19 @@
+{
+  "111111111111111": {
+    "K": "465b5ce8b199b49faa5f0a2ee238a6bc",
+    "RAND": "23553cbe9637a89d218ae64dae47bf35",
+    "SQN": "ff9bb4d0b607",
+    "AMF": "b9b9",
+    "XRES": "a54211d5e3ba50bf",
+    "AUTN": "14546ghj2390a89d218wr90rtu47bf35",
+    "OP": "cdc202d5123e20f62b6d676ac72cb318",
+    "OPC": "cd63cb71954a9f4e48a5994e37a02baf",
+    "f1": "4a9ffac354dfafb3",
+    "f11": "01cfaf9ec4e871e9 ",
+    "f2": "a54211d5e3ba50bf",
+    "f3": "b40ba9a3c58b2a05bbf0d987b21bf8cb",
+    "f4": "f769bcd751044604127672711c6d3441",
+    "f5": "aa689c648370",
+    "f51": "451e8beca43b"
+  }
+}

@@ -1,0 +1,17 @@
+{% if error %} {{ error }} <hr> {% endif %}
+<form action="" method="post">
+    <p>Please type in account and password and then choose the home provider:</p>
+    <div>
+      <input type="text" name="username" placeholder="Username">
+      <br><input type="password" name="password" placeholder="Password">
+      <br>
+      <select name="Home service" id="Home service">
+          <option value=" Home cloud "> Home cloud </option>
+          <option value=" Home fog(OIDC) "> Home fog(OIDC)</option>
+          <option value=" Home fog(802.1x) "> Home fog(802.1x)</option>
+    
+      </select>
+    </div>
+    <br>
+    <button>Sign up account</button>
+  </form>
