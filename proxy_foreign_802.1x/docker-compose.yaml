@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+    # Proxy
+    proxy:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: 'federation/proxy:latest'
+        command: >
+            sh -c "killall wpa_supplicant; rm /run/wpa_supplicant/enx00e04c3600bd; cd src && rm db.sqlite; flask initdb && 
+            flask run --port=5000 --host=0.0.0.0 &
+             freeradius -X"
+        tty: true
+        network_mode: "host"
+        cap_add:
+            - ALL
+        volumes:
+            - "./keylogs:/keylogs:rw"
+            - ".:/src"
+            - ./wpasupplicant/:/tmp/wpasupplicant/
+            - ./wpasupplicant/cert/:/tmp/cert/

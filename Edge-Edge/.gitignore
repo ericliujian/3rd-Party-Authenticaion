@@ -1,0 +1,19 @@
+/config
+
+# Logs
+archives/
+
+# Python virtual environment 
+venv/
+
+# C object files 
+*.o 
+*.out
+
+# VS code 
+/.vscode
+
+# JS package installs 
+node_modules/
+package-lock.json
+yarn.lock
