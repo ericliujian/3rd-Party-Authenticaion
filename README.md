@@ -8,11 +8,11 @@ In this project, we will provide a universal federated authentication proxy to p
 any modifications in the existing authentication protocols.</p>
 
 ## Implementation
-I already put some steps in different folders, but I might need to put more detailed information soon.
+The implementation steps are stored under corresponding folders. 
 
 
 ## System Specification
-I had some problem when install freeradius in Ubuntu 20.04 LTS, so please stick with 18.04.6 LTS.
+I had some problems when install freeradius in Ubuntu 20.04 LTS, so please stick with 18.04.6 LTS.
 
 
 
